@@ -45,7 +45,7 @@ public class Game {
     int aiFingers = 0;
     if (difficulty == Difficulty.EASY) {
       Ai ai = AiFactory.createAi(difficulty);
-      aiFingers = ai.getFingers();
+      aiFingers = ai.getFingers(roundNumber);
     }
     // THis code block is giving errors
     // Calculate the sum of fingers
@@ -70,6 +70,7 @@ public class Game {
               String.valueOf(sum), sumType.toUpperCase(), "HAL-9000");
       System.out.println(print_outcome_round);
     }
+    // Increment round number with each play call
     roundNumber++;
   }
 

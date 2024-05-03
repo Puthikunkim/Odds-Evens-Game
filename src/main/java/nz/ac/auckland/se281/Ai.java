@@ -1,5 +1,5 @@
 package nz.ac.auckland.se281;
 
 public interface Ai {
-  public int getFingers();
+  public int getFingers(int roundNumber);
 }
