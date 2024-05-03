@@ -13,6 +13,7 @@ public class Game {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     // Sets round number for a new game
     roundNumber = 1;
+    System.out.println(roundNumber);
   }
 
   public void play() {
@@ -22,6 +23,17 @@ public class Game {
     // Ask player for fingers
     String ask_input = MessageCli.ASK_INPUT.getMessage();
     System.out.println(ask_input);
+    // Get player input
+    String input = Utils.scanner.nextLine();
+    while (true) {
+      if (input.matches("[0-5]")) {
+        break;
+      } else {
+        System.out.println(MessageCli.INVALID_INPUT.getMessage());
+        input = Utils.scanner.nextLine();
+      }
+    }
+    roundNumber++;
   }
 
   public void endGame() {}
