@@ -7,10 +7,11 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
 
   private int roundNumber;
-
   private String[] options;
+  private Difficulty difficulty;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
+    this.difficulty = difficulty;
     this.options = options;
     // the first element of options[0]; is the name of the player
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
