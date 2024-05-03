@@ -5,7 +5,13 @@ import nz.ac.auckland.se281.Main.Choice;
 public class MediumAi implements Ai {
 
   @Override
-  public int getFingers(int roundNumber, int playerEvenCount, int playerOddCount, Choice choice) {
+  public int getFingers(
+      int roundNumber,
+      int playerEvenCount,
+      int playerOddCount,
+      Choice choice,
+      boolean playerWinRound,
+      String strategy) {
     int fingers = 0;
     if (roundNumber <= 3) {
       Order order = new Order(playerEvenCount, playerOddCount, choice, new randomStrategy());

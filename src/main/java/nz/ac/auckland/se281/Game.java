@@ -9,9 +9,11 @@ public class Game {
   private int roundNumber;
   private int playerEvenCount;
   private int playerOddCount;
+  boolean playerWinRound;
   private String[] options;
   private Difficulty difficulty;
   private Choice choice;
+  private String hardStrategy;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     this.difficulty = difficulty;
@@ -24,6 +26,8 @@ public class Game {
     System.out.println(roundNumber);
     this.playerEvenCount = 0;
     this.playerOddCount = 0;
+    this.playerWinRound = false;
+    this.hardStrategy = "Random";
   }
 
   public void play() {
@@ -47,7 +51,13 @@ public class Game {
     }
     // Get AI fingers
     Ai ai = AiFactory.createAi(difficulty);
-    int aiFingers = ai.getFingers(roundNumber, playerEvenCount, playerOddCount, choice);
+    int aiFingers =
+        ai.getFingers(
+            roundNumber, playerEvenCount, playerOddCount, choice, playerWinRound, hardStrategy);
+    if (difficulty == Difficulty.HARD) {
+      HardAi hardAi = (HardAi) ai;
+      hardStrategy = hardAi.getStrategy();
+    }
     // Calculate the sum of fingers
     int sum = Integer.parseInt(input) + aiFingers;
     // Check if the sum is even or odd and print the outcome
@@ -64,11 +74,13 @@ public class Game {
           MessageCli.PRINT_OUTCOME_ROUND.getMessage(
               String.valueOf(sum), sumType.toUpperCase(), options[0]);
       System.out.println(print_outcome_round);
+      playerWinRound = true;
     } else {
       String print_outcome_round =
           MessageCli.PRINT_OUTCOME_ROUND.getMessage(
               String.valueOf(sum), sumType.toUpperCase(), "HAL-9000");
       System.out.println(print_outcome_round);
+      playerWinRound = false;
     }
     // Increment player finger type choice
     if (Utils.isEven(Integer.parseInt(input))) {
