@@ -8,7 +8,10 @@ public class Game {
 
   private int roundNumber;
 
+  private String[] options;
+
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
+    this.options = options;
     // the first element of options[0]; is the name of the player
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     // Sets round number for a new game
@@ -27,6 +30,8 @@ public class Game {
     String input = Utils.scanner.nextLine();
     while (true) {
       if (input.matches("[0-5]")) {
+        String print_info_hand = MessageCli.PRINT_INFO_HAND.getMessage(options[0], input);
+        System.out.println(print_info_hand);
         break;
       } else {
         System.out.println(MessageCli.INVALID_INPUT.getMessage());
