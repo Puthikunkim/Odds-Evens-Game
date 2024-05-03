@@ -10,7 +10,15 @@ public class MediumAi implements Ai {
     if (roundNumber <= 3) {
       fingers = Utils.getRandomNumberRange(0, 5);
     } else {
-
+      if (choice == Choice.EVEN) {
+        if (playerEvenCount > playerOddCount) {
+          fingers = Utils.getRandomOddNumber();
+        } else if (playerOddCount > playerEvenCount) {
+          fingers = Utils.getRandomEvenNumber();
+        } else if (playerEvenCount == playerOddCount) {
+          fingers = Utils.getRandomNumberRange(0, 5);
+        }
+      }
     }
     return fingers;
   }
