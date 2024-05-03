@@ -46,14 +46,8 @@ public class Game {
       }
     }
     // Get AI fingers
-    int aiFingers = 0;
-    if (difficulty == Difficulty.EASY) {
-      Ai ai = AiFactory.createAi(difficulty);
-      aiFingers = ai.getFingers(roundNumber, playerEvenCount, playerOddCount, choice);
-    } else if (difficulty == Difficulty.MEDIUM) {
-      Ai ai = AiFactory.createAi(difficulty);
-      aiFingers = ai.getFingers(roundNumber, playerEvenCount, playerOddCount, choice);
-    }
+    Ai ai = AiFactory.createAi(difficulty);
+    int aiFingers = ai.getFingers(roundNumber, playerEvenCount, playerOddCount, choice);
     // Calculate the sum of fingers
     int sum = Integer.parseInt(input) + aiFingers;
     // Check if the sum is even or odd and print the outcome
