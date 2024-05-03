@@ -7,6 +7,8 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
 
   private int roundNumber;
+  private int playerEvenCount;
+  private int playerOddCount;
   private String[] options;
   private Difficulty difficulty;
   private Choice choice;
@@ -18,8 +20,10 @@ public class Game {
     // the first element of options[0]; is the name of the player
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     // Sets round number for a new game
-    roundNumber = 1;
+    this.roundNumber = 1;
     System.out.println(roundNumber);
+    this.playerEvenCount = 0;
+    this.playerOddCount = 0;
   }
 
   public void play() {
@@ -45,9 +49,11 @@ public class Game {
     int aiFingers = 0;
     if (difficulty == Difficulty.EASY) {
       Ai ai = AiFactory.createAi(difficulty);
-      aiFingers = ai.getFingers(roundNumber);
+      aiFingers = ai.getFingers(roundNumber, playerEvenCount, playerOddCount, choice);
+    } else if (difficulty == Difficulty.MEDIUM) {
+      Ai ai = AiFactory.createAi(difficulty);
+      aiFingers = ai.getFingers(roundNumber, playerEvenCount, playerOddCount, choice);
     }
-    // THis code block is giving errors
     // Calculate the sum of fingers
     int sum = Integer.parseInt(input) + aiFingers;
     // Check if the sum is even or odd and print the outcome
@@ -69,6 +75,12 @@ public class Game {
           MessageCli.PRINT_OUTCOME_ROUND.getMessage(
               String.valueOf(sum), sumType.toUpperCase(), "HAL-9000");
       System.out.println(print_outcome_round);
+    }
+    // Increment player finger type choice
+    if (Utils.isEven(Integer.parseInt(input))) {
+      playerEvenCount++;
+    } else {
+      playerOddCount++;
     }
     // Increment round number with each play call
     roundNumber++;
