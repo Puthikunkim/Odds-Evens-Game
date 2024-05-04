@@ -84,8 +84,6 @@ public class Game {
     } else {
       playerOddCount++;
     }
-    // Increment round number with each play call
-    roundNumber++;
     // Logic to determine what strategy to use in the next round for hard ai after round 3
     if (difficulty == Difficulty.HARD && roundNumber > 3) {
       if (playerWinRound) {
@@ -102,6 +100,8 @@ public class Game {
         }
       }
     }
+    // Increment round number with each play call
+    roundNumber++;
   }
 
   public void endGame() {}

@@ -17,22 +17,12 @@ public class HardAi implements Ai {
       Order order = new Order(playerEvenCount, playerOddCount, choice, new randomStrategy());
       fingers = order.fingersProcess();
     } else {
-      if (playerWinRound) {
-        if (strategy.equals("Random")) {
-          Order order = new Order(playerEvenCount, playerOddCount, choice, new topStrategy());
-          fingers = order.fingersProcess();
-        } else if (strategy.equals("Top")) {
-          Order order = new Order(playerEvenCount, playerOddCount, choice, new randomStrategy());
-          fingers = order.fingersProcess();
-        }
-      } else if (!playerWinRound) {
-        if (strategy.equals("Random")) {
-          Order order = new Order(playerEvenCount, playerOddCount, choice, new randomStrategy());
-          fingers = order.fingersProcess();
-        } else if (strategy.equals("Top")) {
-          Order order = new Order(playerEvenCount, playerOddCount, choice, new topStrategy());
-          fingers = order.fingersProcess();
-        }
+      if (strategy.equals("Random")) {
+        Order order = new Order(playerEvenCount, playerOddCount, choice, new randomStrategy());
+        fingers = order.fingersProcess();
+      } else if (strategy.equals("Top")) {
+        Order order = new Order(playerEvenCount, playerOddCount, choice, new topStrategy());
+        fingers = order.fingersProcess();
       }
     }
     String print_info_hand =
