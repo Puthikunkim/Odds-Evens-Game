@@ -15,6 +15,8 @@ public class Game {
   private Choice choice;
   private String hardStrategy;
   private boolean gameStart;
+  private int playerWins;
+  private int aiWins;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     this.difficulty = difficulty;
@@ -30,6 +32,8 @@ public class Game {
     this.playerWinRound = false;
     this.hardStrategy = "Random";
     this.gameStart = true;
+    this.playerWins = 0;
+    this.aiWins = 0;
   }
 
   public void play() {
@@ -107,11 +111,32 @@ public class Game {
         }
       }
     }
+    // Increment player wins
+    if (playerWinRound) {
+      playerWins++;
+    } else {
+      aiWins++;
+    }
     // Increment round number with each play call
     roundNumber++;
   }
 
   public void endGame() {}
 
-  public void showStats() {}
+  public void showStats() {
+    // Check if the game has started
+    if (!gameStart) {
+      System.out.println(MessageCli.GAME_NOT_STARTED.getMessage());
+      return;
+    }
+    // Print the stats for player and ai
+    String printPlayerStats =
+        MessageCli.PRINT_PLAYER_WINS.getMessage(
+            options[0], String.valueOf(playerWins), String.valueOf(aiWins));
+    System.out.println(printPlayerStats);
+    String printAiStats =
+        MessageCli.PRINT_PLAYER_WINS.getMessage(
+            "HAL-9000", String.valueOf(aiWins), String.valueOf(playerWins));
+    System.out.println(printAiStats);
+  }
 }
