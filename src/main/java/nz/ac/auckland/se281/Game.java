@@ -14,6 +14,7 @@ public class Game {
   private Difficulty difficulty;
   private Choice choice;
   private String hardStrategy;
+  private boolean gameStart;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     this.difficulty = difficulty;
@@ -28,9 +29,15 @@ public class Game {
     this.playerOddCount = 0;
     this.playerWinRound = false;
     this.hardStrategy = "Random";
+    this.gameStart = true;
   }
 
   public void play() {
+    // Check if the game has started
+    if (!gameStart) {
+      System.out.println(MessageCli.GAME_NOT_STARTED.getMessage());
+      return;
+    }
     // Round message
     String roundMessage = MessageCli.START_ROUND.getMessage(String.valueOf(roundNumber));
     System.out.println(roundMessage);
