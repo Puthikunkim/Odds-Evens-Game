@@ -9,6 +9,8 @@ public class AiFactory {
         return new EasyAi();
       case MEDIUM:
         return new MediumAi();
+      case HARD:
+        return new HardAi();
       default:
         break;
     }

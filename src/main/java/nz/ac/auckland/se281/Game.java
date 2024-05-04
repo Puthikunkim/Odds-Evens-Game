@@ -54,10 +54,6 @@ public class Game {
     int aiFingers =
         ai.getFingers(
             roundNumber, playerEvenCount, playerOddCount, choice, playerWinRound, hardStrategy);
-    if (difficulty == Difficulty.HARD) {
-      HardAi hardAi = (HardAi) ai;
-      hardStrategy = hardAi.getStrategy();
-    }
     // Calculate the sum of fingers
     int sum = Integer.parseInt(input) + aiFingers;
     // Check if the sum is even or odd and print the outcome
@@ -90,6 +86,22 @@ public class Game {
     }
     // Increment round number with each play call
     roundNumber++;
+    // Logic to determine what strategy to use in the next round for hard ai after round 3
+    if (difficulty == Difficulty.HARD && roundNumber > 3) {
+      if (playerWinRound) {
+        if (hardStrategy.equals("Random")) {
+          hardStrategy = "Top";
+        } else if (hardStrategy.equals("Top")) {
+          hardStrategy = "Random";
+        }
+      } else if (!playerWinRound) {
+        if (hardStrategy.equals("Random")) {
+          hardStrategy = "Random";
+        } else if (hardStrategy.equals("Top")) {
+          hardStrategy = "Top";
+        }
+      }
+    }
   }
 
   public void endGame() {}
