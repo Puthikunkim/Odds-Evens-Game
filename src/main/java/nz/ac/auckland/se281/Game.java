@@ -121,7 +121,20 @@ public class Game {
     roundNumber++;
   }
 
-  public void endGame() {}
+  public void endGame() {
+    showStats();
+    // Print the final message
+    if (playerWins > aiWins) {
+      String endMessage = MessageCli.PRINT_END_GAME.getMessage(options[0]);
+      System.out.println(endMessage);
+    } else if (playerWins < aiWins) {
+      String endMessage = MessageCli.PRINT_END_GAME.getMessage("HAL-9000");
+      System.out.println(endMessage);
+    } else {
+      String endMessage = MessageCli.PRINT_END_GAME_TIE.getMessage();
+      System.out.println(endMessage);
+    }
+  }
 
   public void showStats() {
     // Check if the game has started
