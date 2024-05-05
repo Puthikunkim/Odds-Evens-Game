@@ -26,7 +26,6 @@ public class Game {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]);
     // Sets round number for a new game
     this.roundNumber = 1;
-    System.out.println(roundNumber);
     this.playerEvenCount = 0;
     this.playerOddCount = 0;
     this.playerWinRound = false;
@@ -122,17 +121,26 @@ public class Game {
   }
 
   public void endGame() {
-    showStats();
-    // Print the final message
-    if (playerWins > aiWins) {
-      String endMessage = MessageCli.PRINT_END_GAME.getMessage(options[0]);
-      System.out.println(endMessage);
-    } else if (playerWins < aiWins) {
-      String endMessage = MessageCli.PRINT_END_GAME.getMessage("HAL-9000");
-      System.out.println(endMessage);
+    if (!gameStart) {
+      System.out.println(MessageCli.GAME_NOT_STARTED.getMessage());
+      return;
     } else {
-      String endMessage = MessageCli.PRINT_END_GAME_TIE.getMessage();
-      System.out.println(endMessage);
+      // Print the final message
+      if (playerWins > aiWins) {
+        String endMessage = MessageCli.PRINT_END_GAME.getMessage(options[0]);
+        showStats();
+        System.out.println(endMessage);
+      } else if (playerWins < aiWins) {
+        String endMessage = MessageCli.PRINT_END_GAME.getMessage("HAL-9000");
+        showStats();
+        System.out.println(endMessage);
+      } else if (playerWins == aiWins) {
+        String endMessage = MessageCli.PRINT_END_GAME_TIE.getMessage();
+        showStats();
+        System.out.println(endMessage);
+      }
+      // Reset the game and stats
+      gameStart = false;
     }
   }
 
@@ -141,15 +149,16 @@ public class Game {
     if (!gameStart) {
       System.out.println(MessageCli.GAME_NOT_STARTED.getMessage());
       return;
+    } else {
+      // Print the stats for player and ai
+      String printPlayerStats =
+          MessageCli.PRINT_PLAYER_WINS.getMessage(
+              options[0], String.valueOf(playerWins), String.valueOf(aiWins));
+      System.out.println(printPlayerStats);
+      String printAiStats =
+          MessageCli.PRINT_PLAYER_WINS.getMessage(
+              "HAL-9000", String.valueOf(aiWins), String.valueOf(playerWins));
+      System.out.println(printAiStats);
     }
-    // Print the stats for player and ai
-    String printPlayerStats =
-        MessageCli.PRINT_PLAYER_WINS.getMessage(
-            options[0], String.valueOf(playerWins), String.valueOf(aiWins));
-    System.out.println(printPlayerStats);
-    String printAiStats =
-        MessageCli.PRINT_PLAYER_WINS.getMessage(
-            "HAL-9000", String.valueOf(aiWins), String.valueOf(playerWins));
-    System.out.println(printAiStats);
   }
 }
