@@ -9,7 +9,7 @@ public class Game {
   private int roundNumber;
   private int playerEvenCount;
   private int playerOddCount;
-  boolean playerWinRound;
+  private boolean playerWinRound;
   private String[] options;
   private Difficulty difficulty;
   private Choice choice;
@@ -18,6 +18,13 @@ public class Game {
   private int playerWins;
   private int aiWins;
 
+  /**
+   * This method starts a new game.
+   *
+   * @param difficulty difficulty of the game
+   * @param choice choice of the player (even or odd)
+   * @param options name of the player
+   */
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     this.difficulty = difficulty;
     this.choice = choice;
@@ -35,6 +42,7 @@ public class Game {
     this.aiWins = 0;
   }
 
+  /** This method plays a round of the game. */
   public void play() {
     // Check if the game has started
     if (!gameStart) {
@@ -51,8 +59,8 @@ public class Game {
     String input = Utils.scanner.nextLine();
     while (true) {
       if (input.matches("[0-5]")) {
-        String print_info_hand = MessageCli.PRINT_INFO_HAND.getMessage(options[0], input);
-        System.out.println(print_info_hand);
+        String infoHandMessage = MessageCli.PRINT_INFO_HAND.getMessage(options[0], input);
+        System.out.println(infoHandMessage);
         break;
       } else {
         System.out.println(MessageCli.INVALID_INPUT.getMessage());
@@ -76,16 +84,16 @@ public class Game {
     // Print the outcome of the round taking into account user choice
     if ((sumType.equals("even") && choice == Choice.EVEN)
         || (sumType.equals("odd") && choice == Choice.ODD)) {
-      String print_outcome_round =
+      String roundOutcomeMessage =
           MessageCli.PRINT_OUTCOME_ROUND.getMessage(
               String.valueOf(sum), sumType.toUpperCase(), options[0]);
-      System.out.println(print_outcome_round);
+      System.out.println(roundOutcomeMessage);
       playerWinRound = true;
     } else {
-      String print_outcome_round =
+      String roundOutcomeMessage =
           MessageCli.PRINT_OUTCOME_ROUND.getMessage(
               String.valueOf(sum), sumType.toUpperCase(), "HAL-9000");
-      System.out.println(print_outcome_round);
+      System.out.println(roundOutcomeMessage);
       playerWinRound = false;
     }
     // Increment player finger type choice
@@ -120,6 +128,7 @@ public class Game {
     roundNumber++;
   }
 
+  /** This method ends the game and prints the final message. */
   public void endGame() {
     if (!gameStart) {
       System.out.println(MessageCli.GAME_NOT_STARTED.getMessage());
@@ -144,6 +153,7 @@ public class Game {
     }
   }
 
+  /** This method shows the stats of the game. */
   public void showStats() {
     // Check if the game has started
     if (!gameStart) {
