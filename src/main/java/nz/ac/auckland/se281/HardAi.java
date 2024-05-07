@@ -18,15 +18,15 @@ public class HardAi implements Ai {
     int fingers = 0;
     // If the round number is less than or equal to 3, the AI will use the Random strategy
     if (roundNumber <= 3) {
-      Order order = new Order(playerEvenCount, playerOddCount, choice, new RandomStrategy());
+      Order order = new Order(playerEvenCount, playerOddCount, choice, new randomStrategy());
       fingers = order.fingersProcess();
     } else { // If the round number is greater than 3, the AI will switched strategy based on if it
       // won or lost the previous round
       if (strategy.equals("Random")) {
-        Order order = new Order(playerEvenCount, playerOddCount, choice, new RandomStrategy());
+        Order order = new Order(playerEvenCount, playerOddCount, choice, new randomStrategy());
         fingers = order.fingersProcess();
       } else if (strategy.equals("Top")) {
-        Order order = new Order(playerEvenCount, playerOddCount, choice, new TopStrategy());
+        Order order = new Order(playerEvenCount, playerOddCount, choice, new topStrategy());
         fingers = order.fingersProcess();
       }
     }

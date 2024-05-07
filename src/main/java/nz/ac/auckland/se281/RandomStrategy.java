@@ -3,7 +3,7 @@ package nz.ac.auckland.se281;
 import nz.ac.auckland.se281.Main.Choice;
 
 /** RandomStrategy class to implement the Random strategy for the AI. */
-public class RandomStrategy implements Strategy {
+public class randomStrategy implements Strategy {
 
   /**
    * Method to get the number of fingers the AI will play on Random strategy.

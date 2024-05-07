@@ -3,7 +3,7 @@ package nz.ac.auckland.se281;
 import nz.ac.auckland.se281.Main.Choice;
 
 /** TopStrategy class to implement the Top Strategy. */
-public class TopStrategy implements Strategy {
+public class topStrategy implements Strategy {
 
   /**
    * Method to get the number of fingers the AI will play on Top Strategy.

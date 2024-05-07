@@ -30,7 +30,7 @@ public class EasyAi implements Ai {
       String strategy) {
 
     // AI uses the Random strategy
-    Order order = new Order(playerEvenCount, playerOddCount, choice, new RandomStrategy());
+    Order order = new Order(playerEvenCount, playerOddCount, choice, new randomStrategy());
     int fingers = order.fingersProcess();
 
     // Print the number of fingers the AI played
