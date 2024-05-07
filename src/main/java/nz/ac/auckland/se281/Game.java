@@ -75,7 +75,7 @@ public class Game {
     // Calculate the sum of fingers
     int sum = Integer.parseInt(input) + aiFingers;
     // Check if the sum is even or odd and print the outcome
-    String sumType = "";
+    String sumType;
     if (Utils.isEven(sum)) {
       sumType = "even";
     } else {

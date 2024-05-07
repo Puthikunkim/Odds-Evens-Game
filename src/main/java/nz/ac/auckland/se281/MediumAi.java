@@ -15,7 +15,7 @@ public class MediumAi implements Ai {
       boolean playerWinRound,
       String strategy) {
 
-    int fingers = 0;
+    int fingers;
     // If the round number is less than or equal to 3, the AI will use the Random strategy
     if (roundNumber <= 3) {
       Order order = new Order(playerEvenCount, playerOddCount, choice, new RandomStrategy());
