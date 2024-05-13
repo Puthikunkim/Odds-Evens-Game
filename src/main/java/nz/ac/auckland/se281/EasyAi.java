@@ -14,8 +14,6 @@ public class EasyAi implements Ai {
    * @param playerOddCount playerOddCount is the number of times odd fingers has been played by the
    *     player.
    * @param choice choice is the choice of the player to play even or odd.
-   * @param playerWinRound playerWinRound is a boolean to determine if the player won the previous
-   *     round.
    * @param strategy strategy is the strategy to be used by the AI whether the Random or Top
    *     strategy (used only for Hard difficulty).
    * @return the number of fingers the AI will play.
