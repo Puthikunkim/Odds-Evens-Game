@@ -64,14 +64,14 @@ public class Game {
         break;
       } else {
         System.out.println(MessageCli.INVALID_INPUT.getMessage());
+        System.out.println(askInput);
         input = Utils.scanner.nextLine();
       }
     }
     // Get AI fingers
     Ai ai = AiFactory.createAi(difficulty);
     int aiFingers =
-        ai.getFingers(
-            roundNumber, playerEvenCount, playerOddCount, choice, playerWinRound, hardStrategy);
+        ai.getFingers(roundNumber, playerEvenCount, playerOddCount, choice, hardStrategy);
     // Calculate the sum of fingers
     int sum = Integer.parseInt(input) + aiFingers;
     // Check if the sum is even or odd and print the outcome

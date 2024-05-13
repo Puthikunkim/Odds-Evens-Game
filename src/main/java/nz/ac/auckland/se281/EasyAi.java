@@ -22,12 +22,7 @@ public class EasyAi implements Ai {
    */
   @Override
   public int getFingers(
-      int roundNumber,
-      int playerEvenCount,
-      int playerOddCount,
-      Choice choice,
-      boolean playerWinRound,
-      String strategy) {
+      int roundNumber, int playerEvenCount, int playerOddCount, Choice choice, String strategy) {
 
     // AI uses the Random strategy
     Order order = new Order(playerEvenCount, playerOddCount, choice, new RandomStrategy());

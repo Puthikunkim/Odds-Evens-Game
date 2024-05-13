@@ -8,20 +8,16 @@ public class MediumAi implements Ai {
   // Method to get the number of fingers the AI will play
   @Override
   public int getFingers(
-      int roundNumber,
-      int playerEvenCount,
-      int playerOddCount,
-      Choice choice,
-      boolean playerWinRound,
-      String strategy) {
+      int roundNumber, int playerEvenCount, int playerOddCount, Choice choice, String strategy) {
 
     int fingers;
+    Order order = new Order(playerEvenCount, playerOddCount, choice, new RandomStrategy());
     // If the round number is less than or equal to 3, the AI will use the Random strategy
     if (roundNumber <= 3) {
-      Order order = new Order(playerEvenCount, playerOddCount, choice, new RandomStrategy());
+      order.setStrategy(new RandomStrategy());
       fingers = order.fingersProcess();
     } else { // If the round number is greater than 3, the AI will use the Top strategy
-      Order order = new Order(playerEvenCount, playerOddCount, choice, new TopStrategy());
+      order.setStrategy(new TopStrategy());
       fingers = order.fingersProcess();
     }
     // Print the number of fingers the AI played
